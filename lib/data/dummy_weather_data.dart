@@ -1,4 +1,6 @@
 import 'package:weather_app_deswin/models/city_weather.dart';
+import 'package:weather_app_deswin/models/forecast.dart';
+import 'package:weather_app_deswin/models/hourly_forecast.dart';
 
 CityWeather getJakartaWeatherData() => _generateWeather(
   city: 'Jakarta',
@@ -45,7 +47,30 @@ CityWeather _generateWeather({
         date: date,
         temperature: temps[index],
         condition: conditions[index],
+        humidity: 60 + (index * 3) % 20,
+        pressure: 1005 + (index % 5),
+        windSpeed: 10 + index.toDouble(),
+        windDirection: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][index % 8],
+        uvIndex: 3.0 + (index % 5),
+        hourly: _generateHourlyForecast(date, temps[index], conditions[index]),
       );
     }),
   );
+}
+
+List<HourlyForecast> _generateHourlyForecast(DateTime date, int dailyTemp, String dailyCondition) {
+  return List.generate(24, (hour) {
+    final time = DateTime(date.year, date.month, date.day, hour);
+    int variation = (hour - 12).abs();
+    int temperature = dailyTemp - (variation ~/ 3);
+
+    return HourlyForecast(
+      time: time,
+      temperature: temperature,
+      condition: dailyCondition,
+      humidity: 55 + (hour % 10),
+      windSpeed: 5 + (hour % 6).toDouble(),
+      windDirection: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][hour % 8],
+    );
+  });
 }

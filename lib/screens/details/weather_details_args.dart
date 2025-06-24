@@ -1,15 +1,14 @@
+// lib/models/weather_detail_args.dart
 import 'package:weather_app_deswin/models/forecast.dart';
 
-class CityWeather {
+class WeatherDetailsArgs {
+  final Forecast forecast;
   final String city;
   final String country;
-  final List<Forecast> forecasts;
 
-  CityWeather({
+  WeatherDetailsArgs({
+    required this.forecast,
     required this.city,
     required this.country,
-    required this.forecasts,
   });
-
-  Forecast get today => forecasts.first;
 }
