@@ -5,8 +5,15 @@ import 'package:weather_app_deswin/utils/utils.dart';
 
 class TodayWeatherSection extends StatelessWidget {
   final CityWeather currentWeather;
+  final VoidCallback? onCityTap;
+  final VoidCallback? onDetailsTap;
 
-  const TodayWeatherSection({super.key, required this.currentWeather});
+  const TodayWeatherSection({
+    super.key,
+    required this.currentWeather,
+    this.onCityTap,
+    this.onDetailsTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +22,22 @@ class TodayWeatherSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // City and Country
-        Text(
-          '${currentWeather.city}, ${currentWeather.country}',
-          style: Theme.of(context).textTheme.titleLarge,
+        // City and Country - City Picker
+        GestureDetector(
+          onTap: onCityTap,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '${currentWeather.city}, ${currentWeather.country}',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(decoration: TextDecoration.underline),
+              ),
+              const Icon(Icons.arrow_drop_down),
+            ],
+          ),
         ),
         const SizedBox(height: 4),
         Text(
@@ -46,6 +65,25 @@ class TodayWeatherSection extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        InkWell(
+          onTap: onDetailsTap,
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            decoration: BoxDecoration(
+              border: Border.all(color: Theme.of(context).dividerColor),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('See Full Details', style: Theme.of(context).textTheme.bodyLarge),
+                const Icon(Icons.arrow_forward_ios_rounded, size: 18),
+              ],
+            ),
           ),
         ),
       ],
