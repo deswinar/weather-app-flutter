@@ -57,7 +57,7 @@ class TodayWeatherSection extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                '${today.temperature}°C',
+                formatTemperatureWithContext(context, today.temperature),
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               Text(

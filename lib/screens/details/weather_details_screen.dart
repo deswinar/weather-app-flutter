@@ -57,7 +57,7 @@ class WeatherDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${forecast.temperature}°C',
+                        formatTemperatureWithContext(context, forecast.temperature),
                         style: Theme.of(context).textTheme.displaySmall,
                       ),
                       const SizedBox(height: 4),

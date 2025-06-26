@@ -35,7 +35,7 @@ Future<String?> showCityPicker({
                     color: Theme.of(context).colorScheme.primary,
                   ),
                   title: Text('$city, ${weather.country}'),
-                  subtitle: Text('${weather.today.temperature}°C • ${weather.today.condition}'),
+                  subtitle: Text('${formatTemperatureWithContext(context, weather.today.temperature)} • ${weather.today.condition}'),
                   trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 18,),
                 );
               },

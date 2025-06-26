@@ -46,7 +46,7 @@ class HourlyForecastSection extends StatelessWidget {
                     Icon(getWeatherIcon(hour.condition),
                         size: isTablet ? 40 : 28,
                         color: Theme.of(context).colorScheme.primary),
-                    Text('${hour.temperature}°',
+                    Text(formatTemperatureWithContext(context, hour.temperature),
                         style: Theme.of(context).textTheme.bodyMedium),
                   ],
                 ),
