@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app_deswin/providers/settings_provider.dart';
 
 
 IconData getWeatherIcon(String condition) {
@@ -17,3 +19,8 @@ IconData getWeatherIcon(String condition) {
         return Icons.device_unknown;
     }
   }
+
+String formatTemperatureWithContext(BuildContext context, int temp) {
+  final settings = Provider.of<SettingsProvider>(context, listen: false);
+  return settings.formatTemperature(temp);
+}

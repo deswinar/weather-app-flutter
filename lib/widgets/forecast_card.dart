@@ -27,7 +27,7 @@ class ForecastCard extends StatelessWidget {
     );
 
     final tempText = Text(
-      '${forecast.temperature}°C',
+      formatTemperatureWithContext(context, forecast.temperature),
       style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
     );
 
