@@ -1,4 +1,3 @@
-// lib/models/weather_detail_args.dart
 import 'package:weather_app_deswin/models/forecast.dart';
 
 class WeatherDetailsArgs {
